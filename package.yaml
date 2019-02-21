@@ -38,6 +38,9 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - rea
+    - linear
+    - microlens
+    - microlens-th
 
 tests:
   rea-test:
