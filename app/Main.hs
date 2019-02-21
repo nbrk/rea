@@ -1,6 +1,8 @@
 module Main where
 
-import Lib
+import Rea
+
+
 
 main :: IO ()
-main = someFunc
+main = main

@@ -4,16 +4,16 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d78c7698f865660953751c5cc55dd1acfdcc569a8f9dcea1e168e4953d5f9d18
+-- hash: 4c90f536503316815fb99256ebdd227b35b1c65d7248d8757d8593f92bc1bc5d
 
-name:           rea-core
+name:           rea
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/rea-core#readme>
-homepage:       https://github.com/githubuser/rea-core#readme
-bug-reports:    https://github.com/githubuser/rea-core/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2019 Author name here
+description:    Please see the README on GitHub at <https://github.com/githubuser/rea#readme>
+homepage:       https://github.com/githubuser/rea#readme
+bug-reports:    https://github.com/githubuser/rea/issues
+author:         Nikolay Burkov
+maintainer:     nbrk@linklevel.net
+copyright:      2019 Nikolay Burkov
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
@@ -23,7 +23,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/rea-core
+  location: https://github.com/githubuser/rea
 
 library
   exposed-modules:
@@ -34,7 +34,7 @@ library
       Rea.Transfer
       Rea.Types
   other-modules:
-      Paths_rea_core
+      Paths_rea
   hs-source-dirs:
       src
   build-depends:
@@ -44,10 +44,10 @@ library
     , mtl
   default-language: Haskell2010
 
-executable rea-core-exe
+executable rea-exe
   main-is: Main.hs
   other-modules:
-      Paths_rea_core
+      Paths_rea
   hs-source-dirs:
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
@@ -56,14 +56,14 @@ executable rea-core-exe
     , containers
     , microlens
     , mtl
-    , rea-core
+    , rea
   default-language: Haskell2010
 
-test-suite rea-core-test
+test-suite rea-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Paths_rea_core
+      Paths_rea
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
@@ -72,5 +72,5 @@ test-suite rea-core-test
     , containers
     , microlens
     , mtl
-    , rea-core
+    , rea
   default-language: Haskell2010

@@ -1,3 +1,3 @@
-# Changelog for rea-core
+# Changelog for rea
 
 ## Unreleased changes
