@@ -1,0 +1,76 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: d78c7698f865660953751c5cc55dd1acfdcc569a8f9dcea1e168e4953d5f9d18
+
+name:           rea-core
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/rea-core#readme>
+homepage:       https://github.com/githubuser/rea-core#readme
+bug-reports:    https://github.com/githubuser/rea-core/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2019 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/rea-core
+
+library
+  exposed-modules:
+      Lib
+      Rea
+      Rea.Database
+      Rea.Monad
+      Rea.Transfer
+      Rea.Types
+  other-modules:
+      Paths_rea_core
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , microlens
+    , mtl
+  default-language: Haskell2010
+
+executable rea-core-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_rea_core
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , microlens
+    , mtl
+    , rea-core
+  default-language: Haskell2010
+
+test-suite rea-core-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_rea_core
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , microlens
+    , mtl
+    , rea-core
+  default-language: Haskell2010
