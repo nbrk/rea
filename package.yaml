@@ -11,7 +11,9 @@ extra-source-files:
 - ChangeLog.md
 
 # Metadata used when publishing your package
-# synopsis:            Short description of your package
+synopsis:            Resource-Entity-Action design
+                     pattern for declarative
+                     descriptions of RTS games
 # category:            Web
 
 # To avoid duplicated efforts in documentation and dealing with the

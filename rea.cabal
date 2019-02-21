@@ -4,10 +4,11 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e251fe3da9fdae14ef9f4cb4f85e0b6325b5f8b41843c07a4199ef9f7e0d0db4
+-- hash: 85ac9b18f2190def08ad768b723a79838aab8ad203221aa0d7767e7ff8b6726a
 
 name:           rea
 version:        0.1.0.0
+synopsis:       Resource-Entity-Action design pattern for declarative descriptions of RTS games
 description:    Please see the README on GitHub at <https://github.com/githubuser/rea#readme>
 homepage:       https://github.com/githubuser/rea#readme
 bug-reports:    https://github.com/githubuser/rea/issues
@@ -27,7 +28,6 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
       Rea
       Rea.Database
       Rea.Monad
