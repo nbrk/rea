@@ -18,3 +18,7 @@ runRea :: Rea env e a -> env -> Database e
        -> (a, Database e)
 runRea r env db =
    runState (runReaderT r env) db
+
+
+execRea r env db =
+  execState (runReaderT r env) db

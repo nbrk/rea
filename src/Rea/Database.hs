@@ -12,6 +12,11 @@ empty :: Database e
 empty = M.empty
 
 
+fromList :: [e] -> Database e
+fromList es =
+  M.fromList $ zip (iterate (+1) 0) es
+
+
 -- | Perform the resource transfer over all appropriate
 --   entities (for whom the predicate/relation holds).
 --   Returns total number of transfers done.
@@ -31,18 +36,19 @@ performTransfer (Mutable restr endo) = do
   db <- get
   env <- ask
 
-  let kes = M.assocs db
-  let rels = [ (a, b)
-             | a@(k1, e1) <- kes, b@(k2, e2) <- kes
-             , a /= b
-             , restr env e1 e2
-             ]
+  let kes = M.keys db
+  let rels = [(k1, k2)| k1 <- kes, k2 <- kes, k1 /= k2]
   forM_
     rels
-    (\((k1, e1), (k2, e2)) -> do
-        let (endo1, endo2) = endo env e1 e2
-        modify $ M.adjust (appEndo endo1) k1
-        modify $ M.adjust (appEndo endo2) k2
+    (\(k1, k2) -> do
+        e1 <- gets (M.! k1)
+        e2 <- gets (M.! k2)
+
+        when (restr env e1 e2) $ do
+          let (endo1, endo2) = endo env e1 e2
+          let e1' = appEndo endo1 e1
+          modify $ M.adjust (const e1') k1
+          modify $ M.adjust (appEndo endo2) k2
     )
 
   return $ length rels
@@ -70,25 +76,31 @@ performTransfer (ThresholdMutable restr endo tp tendo) =
   db <- get
   env <- ask
 
-  let kes = M.assocs db
-  let rels = [ (a, b)
-             | a@(k1, e1) <- kes, b@(k2, e2) <- kes
-             , a /= b
-             , restr env e1 e2
-             ]
+  let kes = M.keys db
+  let rels = [(k1, k2)| k1 <- kes, k2 <- kes, k1 /= k2]
   forM_
     rels
-    (\((k1, e1), (k2, e2)) -> do
-        let (endo1, endo2) = endo env e1 e2
-        let e1' = appEndo endo1 e1
-        modify $ M.adjust (const e1') k1
-        modify $ M.adjust (appEndo endo2) k2
+    (\(k1, k2) -> do
+        e1 <- gets (M.! k1)
+        e2 <- gets (M.! k2)
 
-        --
-        -- Threshold only in the first (left) entity.
-        --
-        when (tp e1') $
-          modify $ M.adjust (appEndo (tendo env)) k1
+        when (restr env e1 e2) $ do
+          let (endo1, endo2) = endo env e1 e2
+          let e1' = appEndo endo1 e1
+          modify $ M.adjust (const e1') k1
+          modify $ M.adjust (appEndo endo2) k2
+
+          --
+          -- Threshold only in the first (left) entity.
+          --
+          when (tp e1') $
+            modify $ M.adjust (appEndo (tendo env)) k1
     )
 
   return $ length rels
+
+
+sequenceTransfers :: Eq e
+                 => [Transfer env e] -> Rea env e ()
+sequenceTransfers ts =
+  mapM_ performTransfer ts

@@ -15,8 +15,17 @@ always _ _ = True
 
 
 -- | A predicate that never holds for the given entity
-never :: env -> e -> Bool
-never _ _ = False
+never :: e -> Bool
+never = const False
+
+-- | A threshold predicate that always holds
+talways :: e -> Bool
+talways = const True
+
+
+-- | A threshold predicate that never holds
+tnever :: env -> e -> Bool
+tnever _ _ = False
 
 
 -- | A relation that always holds between two entities
