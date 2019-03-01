@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 85ac9b18f2190def08ad768b723a79838aab8ad203221aa0d7767e7ff8b6726a
+-- hash: 14362437b18a4181a6e9613a21e66257f0e681c9c0ebdafaf5b5b9143f0fa89d
 
 name:           rea
 version:        0.1.0.0
@@ -54,11 +54,13 @@ executable rea-exe
   build-depends:
       base >=4.7 && <5
     , containers
+    , criterion
     , linear
     , microlens
     , microlens-th
     , mtl
     , rea
+    , sdl2
   default-language: Haskell2010
 
 test-suite rea-test

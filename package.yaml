@@ -43,6 +43,8 @@ executables:
     - linear
     - microlens
     - microlens-th
+    - sdl2
+    - criterion
 
 tests:
   rea-test:
