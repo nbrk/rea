@@ -17,6 +17,10 @@ fromList es =
   M.fromList $ zip (iterate (+1) 0) es
 
 
+toList :: Database e -> [e]
+toList = M.elems
+
+
 -- | Perform the resource transfer over all appropriate
 --   entities (for whom the predicate/relation holds).
 --   Returns total number of transfers done.
